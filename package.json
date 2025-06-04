@@ -1,0 +1,41 @@
+{
+  "name": "keepcoding-09-tdd-with-javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:watchAll": "jest --watchAll",
+    "test:list": "jest --listTests",
+    "test:json": "jest --json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pablo-sch/keepcoding-09-TDD-with-javascript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pablo-sch/keepcoding-09-TDD-with-javascript/issues"
+  },
+  "homepage": "https://github.com/pablo-sch/keepcoding-09-TDD-with-javascript/docs/#readme",
+  "devDependencies": {
+    "@babel/core": "^7.27.4",
+    "@babel/preset-env": "^7.27.2",
+    "@types/jest": "^29.5.14",
+    "babel-jest": "^30.0.0-beta.3",
+    "jest": "^29.7.0",
+    "jest-extended": "^5.0.3"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./testSetup.js"
+    ]
+  },
+  "dependencies": {
+    "axios": "^1.9.0"
+  }
+}
