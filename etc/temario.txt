@@ -1,0 +1,189 @@
+- Qué es el testing
+- Objetivos del testing
+  - Encontrar bugs
+  - Nos permite tener más confianza en el código. Aunque nunca vamos a poder afirmar al 100% que nuestra app no contiene errores, sabemos que ese código está comprobado en su mayor parte antes de lanzarlo a producción.
+  - Lógicamente, el testing nos ayudará a decidir si es adecuado subir ciertas funcionalidades a producción o, por el contrario, esperar más tiempo y subsanar los errores que podamos tener.
+  - Evitar la aparición de defectos en la aplicación. Al hacer testing te acostumbras a escribir código de una manera más limpia, ordenada y con una mayor calidad.
+- Relación con el PM
+  - El testing es una pieza relevante en cualquier tipología de gestión de proyecto. En la cadena de producción, sea cual sea, siempre se puede/debe introducir la fase de testing.
+  - Ejemplos de la relación entre el testing y tipos básicos de gestión de
+    proyectos:
+    - Waterfall
+    - Agile
+    - DevOps
+- Relación con DevOps
+  - Es un elemento imprescindible en el loop infinito de producción.
+  - Como el valor añadido de DevOps pasa por la automatización de
+    procesos, es obligatorio contar con elementos de testing.
+- Tipos de testing
+  - Practical Tesst Pyramid
+  - Tests externos
+    - Son test realizados por herramientas externas.
+    - Estas herramientas no puede acceder al código de nuestra aplicación, por lo que son tests que comprueban la experiencia de usuario y el correcto funcionamiento de nuestra web desde una parte visual
+    - Se dividen en dos tipos:
+      - Manuales: Se siguen una serie de pasos y se comprueba la funcionalidad.
+      - Automáticas: Grabamos una interacción con nuestra app y podemos especificar cada cuanto tiempo queremos que se vuelva a realizar esta comprobación.
+  - Tests funcionales
+    - A diferencia de los tests externos, estos se basan en la parte funcional de nuestra aplicación, por lo tanto, testeamos nuestro código.
+    - Tipos de tests funcionales:
+      - Unitarios
+      - Integración
+      - e2e
+  - Tests de integración
+    - Son pruebas en las que se comprueba el funcionamiento entero de nuestra aplicación.
+    - Con unit testing testeamos cada una de las piezas. Ahora nos centramos en unir dos o más de esas piezas y comprobar que funcionan todas en conjunto.
+    - Es muy frecuente que aunque algo funcione individualmente de la forma esperada, a la hora de integrarlo con el resto de nuestra app esa función deje de funcionar por una razón externa a sí misma.
+    - En el caso del back-end, consistiría en realizar peticiones http a nuestra api y comprobar que responde de manera correcta con todos los parámetros que debería devolver.
+  - Tests E2E
+    - Son tests que replican comportamientos de usuario.
+    - Se conocen también como pruebas de alto nivel.
+    - Tienen por objetivo verificar que el sistema responde de forma correcta a los comportamientos del usuario (ej: login de un usuario, añadir items al carrito de la compra, pasarelas de pago, etc).
+    - Son costosas de producir y de mantener. Se recomienda tener pocas en general.
+  - test funcionales
+  - Tests no funcionales
+    - Son tests que no tienen por objetivo analizar la funcionalidad del
+      código.
+    - Tipos de tests funcionales:
+      - Seguridad
+      - Rendimiento
+      - Usabilidad
+      - Accesibilidad
+  - Tests de seguridad
+    - El objetivo es comprobar las posibles vulnerabilidades que pueda tener nuestra app.
+      - Paquetes y dependencias.
+      - Encriptación.
+      - Datos sensibles.
+  - Tests de rendimiento
+    - El objetivo es comprobar la performance de nuestro código.
+      - TTF (time to first byte).
+      - Cálculo de costes de operación.
+  - Tests de usabilidad
+    - Conocer si determinadas acciones realizadas por usuarios reales son intuitivas o no, si hay impedimentos etc.
+  - Tests de accesibilidad - Se testea si se renderizan bien todos los elementos de una forma visual, además de comprobar si la aplicación tiene alternativas en sus funcionalidades para que puedan ser usadas por personas con algún tipo de discapacidad.
+- Herramientas
+  Podemos distinguir dos tipos de herramientas: imprescindibles, frameworks de testing (o herramientas técnicas).
+- Imprescindibles:
+  - Conocer el lenguaje de programación que se va a testear.
+  - Conocer el código que se va a testear.
+  - Conocer las funcionalidades de nuestra aplicación.
+- Software:
+  - Tests unitarios
+    - Jasmine
+    - Jest
+    - Mocha
+    - Chai
+  - Testing funcional
+    - Supertest
+  - Tests e2e
+    - Selenium
+    - Puppeteer
+    - Protractor (Angular)
+    - Playwright
+- Jest
+  - Tunning Jest
+  - Hooks
+  - Manejo de Excepciones
+  - Testear promesas
+  - Mock
+  - Coverage
+- TDD (Test Driven Develo)
+
+  - Es una forma de desarrollo iterativa que consiste en la realización de los tests en primer lugar, desarrollo de la funcionalidad y refactorizar.
+  - Una descripción más sencilla es crear el test y que falle y desarrollar la funcionalidad hasta que el test esté en verde, posteriormente si cambia esa funcionalidad habría que adaptar primero el test y que falle hasta que realicemos la refactorización.
+  - Las leyes
+    Robert C. Martin describe la esencia del TDD como un proceso que atiende a las siguientes tres reglas:
+    - No escribirás código de producción sin antes escribir un test que falle.
+    - No escribirás más de un test unitario suficiente para fallar (y no compilar es fallar).
+    - No escribirás más código del necesario para hacer pasar el test.
+  - Ciclo Red-Green-Refactor
+
+    1. Red: Escribimos un test que falle.
+       Puede ser unit o integración
+    2. Green: Implementamos lo necesario
+    3. Refactor: Analizar si podemos mejorar el código que hemos hecho
+    4. Cerrado el ciclo, pasamos al siguiente requisito.
+
+  - Reglas (I)
+    TDD especifica una serie de reglas que han de cumplirse:
+
+    1. Tener bien definidos los requisitos de la funcionalidad a realizar.
+       Un mala definición de los requisitos provocaría que no se siguiera TDD de forma adecuada e implicaría una pérdida innecesaria de tiempo.
+    2. Contemplar todos los casos posibles, tanto de éxito como de error en los criterios de aceptación de la funcionalidad.
+
+  - Reglas (II)
+
+    3. Cómo vamos a diseñar el test.
+       Para realizar un buen test debemos ceñirnos a testear únicamente la lógica de cada elemento, utilizando mocks para abstraernos de otras posibles capas o servicios que necesitemos utilizar. Esto es flexible, por ello es el desarrollador el encargado de decidir si es mejor utilizar mocks o usar los servicios reales en el test
+    4. Qué queremos probar.
+       Esto implica también el punto de vista del desarrollador, ya que cada uno puede pensar que se debería testear sólo una cosa en especial y otro puede pensar que deben testearse más.
+    5. ¿Cuántos test son necesarios?
+       El número de test nunca está especificado, se basa en el número de casuísticas que contemple nuestra funcionalidad.
+
+    - Principios
+      Algunos de los principios en los que se basa TDD son los conocidos como principios SOLID:
+
+          - (S) Principio de responsabilidad simple (Single Responsability Principle)
+              - Una clase o módulo debe tener una única responsabilidad
+          - (O) Principio de abierto/cerrado (OCP)
+              - Una clase debe permitir ser extendida sin necesidad de ser modificada
+          - (L) Principio de sustitución de Liskov (LSP)
+              - Si una función recibe un parámetro de un tipo, esta función debe ejecutarse correctamente si recibe un parámetro de ese tipo de alguna de sus subclases
+          - (I) Principio de segregación de interfaces (ISP)
+              - No debemos obligar a clases o interfaces a depender de otras que no necesitan
+          - (D) Principio de inversión de dependencia (DIP) - Son técnicas para lidiar con las colaboraciones entre clases produciendo código
+
+    - Beneficios
+
+      - Mayor calidad en el código desarrollado.
+      - Diseño orientado a las necesidades.
+      - Simplicidad. El código, no los tests.
+      - Menos redundancia.
+      - Mayor productividad al necesitar menor tiempo de debugging.
+      - Se reduce el número de errores.
+
+    - Contrapartidas
+      - Gran curva de aprendizaje.
+      - Se puede perder la visión general del proyecto.
+      - Errores no identificados en el alcance de la funcionalidad.
+      - Si se usa mal, podemos afectar servicios como bases de datos.
+      - Es difícil de implementar en el front-end, puesto que está diseñado para el testeo de la lógica de negocio.
+      - Gran inversión de tiempo (€).
+    - Otras aproximaciones al TDD
+      - BDD (Behavior Driven Development)
+        - Es un proceso de desarrollo de software basado en el testing.
+        - BDD busca un lenguaje común para unir la parte técnica y la de negocio.
+        - En BDD las pruebas de aceptación son las conocidas en agile como historias de usuario
+        - El objetivo de BDD es un lenguaje específico que permite describir un comportamiento en tu app sin importar cómo ese comportamiento está implementado.
+        - Usa Gherkins para describir los test y que sean lo más descriptivo posible.
+        - Herramientas
+          - Cucumber
+          - Gherkins
+        - Ciclo de desarrollo
+        - Ventajas
+          - No defines pruebas, defines comportamientos.
+          - Mejora la comunicación entre desarrolladores, testers, usuarios y la dirección
+          - La curva de aprendizaje es menor que la de TDD.
+          - Como su naturaleza no es técnica, puede llegar a un mayor público.
+          - Encaja perfectamente en las metodologías ágiles que se usan actualmente.
+          - El enfoque de definición ayuda a una aceptación común de las funcionalidades antes de empezar el desarrollo.
+        - Inconvenientes
+          - Errores no identificados en el alcance de la funcionalidad.
+          - Uso con bases de datos.
+          - Es difícil de implementar en el front-end, puesto que está diseñado para el testeo de la lógica de negocio
+          - Gran inversión de tiempo.
+          - Es necesaria una gran comunicación entre desarrollador y cliente.
+          - Necesidad de tener un equipo de desarrolladores centrados en el trabajo con los clientes.
+      - ATDD (Acceptance Test Driven Development)
+        - Es más cercano a un proceso que a una actividad.
+        - Según su definición está más cerca de BDD que de TDD.
+        - ATDD busca que lo que se esté haciendo se haga de forma correcta pero también que lo que se hace es lo correcto a hacer.
+        - Ventajas
+          - No trabajaremos en funciones que finalmente no se van a usar.
+          - Forjaremos un código listo para cambiar si fuera necesario porque su diseño no está limitado por una interfaz de usuario o por el diseño de una base de datos.
+          - Se puede comprobar muy rápido si se están cumpliendo los objetivos o no.
+          - Conocemos en qué punto estamos y cómo se progresa.
+          - El product owner puede revisar los test de aceptación y comprobar cuando se están cumpliendo.Esto mejora la confianza del product owner en sus desarrolladores.
+
+          ```bash
+git clone https://github.com/pablo-sch/keepcoding-09-TDD-with-javascript.git
+```
