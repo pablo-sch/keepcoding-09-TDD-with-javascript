@@ -246,9 +246,13 @@ TODO
 
 ### Klonen des Repositories
 
+- **Projekt**
+
 ```bash
 `git clone https://github.com/pablo-sch/keepcoding-09-TDD-with-javascript.git`
 ```
+
+- **Demo**
 
 ![Demo](https://github.com/pablo-sch/pablo-sch/blob/main/etc/clone-tutorial.gif)
 

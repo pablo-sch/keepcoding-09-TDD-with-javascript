@@ -246,11 +246,13 @@ TODO
 
 ### Clonación del repositorio
 
-Para clonar el repositorio, usa tu cliente Git preferido y ejecuta:
+- **Proyecto**
 
 ```bash
 `git clone https://github.com/pablo-sch/keepcoding-09-TDD-with-javascript.git`
 ```
+
+- **Demo**
 
 ![Demo](https://github.com/pablo-sch/pablo-sch/blob/main/etc/clone-tutorial.gif)
 
