@@ -37,7 +37,8 @@ export class Carrito {
     }
   }
 
-  removeItem() {
-    return [];
+  removeItem(item) {
+    this.items = this.items.filter((i) => i.name !== item.name);
+    return this.items;
   }
 }

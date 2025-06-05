@@ -123,8 +123,29 @@ describe("Testing de la clase Carrito", () => {
       expect(carrito.removeItem(waterItem)).toHaveLength(0);
     });
 
-    it.todo(
-      "Carrito.removeItem debe devolver un array con un elemento cuando añadimos dos elementos distintos y eliminamos uno"
+    it("Carrito.removeItem debe devolver un array con un elemento cuando añadimos dos elementos distintos y eliminamos uno", () => {
+      carrito.addItem(sushiItem);
+      carrito.addItem(waterItem);
+      expect(carrito.removeItem(waterItem)).toHaveLength(1);
+    });
+
+    it("Carrito.items debe contener un elemento después de añadir dos elementos distintos y eliminar uno", () => {
+      carrito.addItem(sushiItem);
+      carrito.addItem(waterItem);
+      carrito.removeItem(waterItem);
+      expect(carrito.items).toHaveLength(1);
+    });
+
+    /*     it.todo(
+      "Carrito.items debe ser un array con DOS elementos si añadimos dos sushiItem y un waterItem y eliminamos un sushiItem"
     );
+
+    it("", () => {
+      carrito.addItem(sushiItem);
+      carrito.addItem(sushiItem);
+      carrito.addItem(waterItem);
+      carrito.removeItem(sushiItem);
+      expect(carrito.items).toHaveLength(2);
+    }); */
   });
 });
