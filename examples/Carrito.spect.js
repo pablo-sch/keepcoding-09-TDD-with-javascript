@@ -6,6 +6,11 @@ describe("Testing de la clase Carrito", () => {
     name: "sushiItem",
   };
 
+  const waterItem = {
+    price: 1.5,
+    name: "waterItem",
+  };
+
   let carrito;
   beforeEach(() => {
     carrito = new Carrito();
@@ -59,12 +64,67 @@ describe("Testing de la clase Carrito", () => {
   });
 
   describe("Testeando getTotalCheckout", () => {
+    it("Carrito.getTotatCheckout debe devolver 10 despues de añadir 1 sushiItem", () => {
+      carrito.addItem(sushiItem);
+      expect(carrito.getTotatCheckout()).toEqual(10);
+    });
+
+    it("Carrito.getTotatCheckout debe devolver 20 despues de añadir 2 sushiItem", () => {
+      carrito.addItem(sushiItem);
+      carrito.addItem(sushiItem);
+      expect(carrito.getTotatCheckout()).toEqual(20);
+    });
+
+    it("Carrito.getTotatCheckout debe devolver 11,5 despues de añadir 1 sushiItem i 1 waterItem", () => {
+      carrito.addItem(sushiItem);
+      carrito.addItem(waterItem);
+      expect(carrito.getTotatCheckout()).toEqual(11.5);
+    });
+
+    it("Debe devolver 0 si el carrito esta vacío", () => {
+      expect(carrito.getTotatCheckout()).toEqual(0);
+    });
+  });
+
+  describe("Testeando addItem (detail)", () => {
+    it("Debe contener el item añadido en la propiedad carrito.items", () => {
+      carrito.addItem(sushiItem);
+      expect(carrito.items).toPartiallyContain(sushiItem);
+    });
+
+    it("Carrito.items debe ser un array vacío si no añadimos ningun elemento", () => {
+      expect(carrito.items).toBeEmpty();
+    });
+
+    it("Carrito debe llamar a una función checkItem antes de añadirlo al carrito.", () => {
+      const spy = jest.spyOn(carrito, "checkItem");
+      carrito.addItem(sushiItem);
+      // expect(jest.spyOn(carrito, 'checkItem')).toHaveBeenCalled(); Es lo mismo que definir una variable.
+      expect(spy).toHaveBeenCalled();
+    });
+
+    it("Carrito debe llamar una única vez a checkItem cuando añadimos un elemento", () => {
+      const spy = jest.spyOn(carrito, "checkItem");
+      carrito.addItem(sushiItem);
+      expect(spy).toHaveBeenCalledOnce();
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+    it("Carrito debe llamar a una función checkItem con el valor del item a añadir", () => {
+      const spy = jest.spyOn(carrito, "checkItem");
+      carrito.addItem(sushiItem);
+      expect(spy).toHaveBeenCalledWith(sushiItem);
+    });
+  });
+
+  describe("Testeando removeItem", () => {
+    it("Carrito.removeItem debe devolver un array vacio despues de añadir un elemento y eliminarlo", () => {
+      carrito.addItem(waterItem);
+      expect(carrito.removeItem(waterItem)).toHaveLength(0);
+    });
+
     it.todo(
-      "Carrito.getTotatCheckout debe devolver 10 despues de añadir 1 sushiItem",
-      () => {
-        carrito.addItem(sushiItem);
-        expect(carrito.getTotalCheckout()).toEqual(1);
-      }
+      "Carrito.removeItem debe devolver un array con un elemento cuando añadimos dos elementos distintos y eliminamos uno"
     );
   });
 });
