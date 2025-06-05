@@ -1,7 +1,7 @@
 # Test-Driven-Development-Übung mit JavaScript
 
 **KeepCoding Projects - Web 18**  
-Detaillierte Liste der Repositories und Beschreibungen in [repos-kc-web-18.md](https://github.com/pablo-sch/pablo-sch/blob/main/docs/repos-kc-web-18.md)
+Detaillierte Liste der Repositories und Beschreibungen in 📁 [repos-kc-web-18.md](https://github.com/pablo-sch/pablo-sch/blob/main/docs/repos-kc-web-18.md)
 
 ## Wähle deine Sprache
 
@@ -246,13 +246,13 @@ TODO
 
 ### Klonen des Repositories
 
-- **Projekt**
+Projekt
 
 ```bash
 `git clone https://github.com/pablo-sch/keepcoding-09-TDD-with-javascript.git`
 ```
 
-- **Demo**
+Demo
 
 ![Demo](https://github.com/pablo-sch/pablo-sch/blob/main/etc/clone-tutorial.gif)
 
