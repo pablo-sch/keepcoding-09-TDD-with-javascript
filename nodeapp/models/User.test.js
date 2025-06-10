@@ -1,38 +1,39 @@
-import request from "supertest";
-import app from "../app";
-import { guard, middleware } from "../lib/sessionManager";
+import User from "./User";
 
-// Podemos mockear funciones internas
-jest.mock("../lib/sessionManager", () => ({
-  guard: jest.fn((req, res, next) => {
-    // Simular que el usuario no esta autenticado
-    res.redirect(`/login?redir=${req.url}`);
+describe("User model & schema", () => {
+  it("Debería hashear correctamente la contraseña", async () => {
+    // Crear un password plano
+    const clearPassword = "supersegura";
 
-    // Todos los middlewares llaman a next();
-    next();
-  }),
-  middleware: jest.fn((req, res, next) => next()),
-  useSessionInViews: jest.fn((req, res, next) => next()),
-}));
+    // Crear su hash
+    const hash = await User.hashPassword(clearPassword);
 
-describe("AgentsController", () => {
-  it("Debería redirigir a la vista de login si no existe una sesión", async () => {
-    expect.assertions(2);
-    // Hacer una request a nuestra app
-    const response = await request(app)
-      // en la ruta /agents/new
-      .get("/agents/new");
-
-    // Esperamos una redirección a login
-    expect(response.status).toBe(302);
-    expect(response.headers.location).toBe("/login?redir=/agents/new");
+    // Verificar que son diferentes
+    expect(hash).not.toBe(clearPassword);
+    expect(hash.length).toBeGreaterThan(1);
+    expect(hash).not.toHaveLength(0);
   });
 
-  it("debería llamar al guard antes de permitir el acceso a la ruta", async () => {
-    expect.assertions(1);
-    const response = await request(app).get("/agents/new");
+  it.todo("Debería generar el hash utilizando la utilidad bcrypt");
 
-    // El middleware de guard se debe llamar
-    expect(guard).toHaveBeenCalled();
+  it("Debería comparar correctamente la contraseña", async () => {
+    expect.assertions(2);
+    // Al crear un usuario, crear su hash y compararlo con el password plano, deberia ser true.
+    // Crear un password plano
+    const clearPassword = "supersegura";
+
+    // Crear su hash
+    const hash = await User.hashPassword(clearPassword);
+
+    const user = new User({
+      email: "demo@example.com",
+      password: hash,
+    });
+
+    const matchPassword = await user.comparePassword(clearPassword);
+    expect(matchPassword).toBeTrue();
+
+    const notMatchPassword = await user.comparePassword("errorPassword");
+    expect(notMatchPassword).toBeFalse();
   });
 });
