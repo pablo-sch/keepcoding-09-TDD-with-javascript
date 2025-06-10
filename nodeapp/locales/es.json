@@ -1,0 +1,10 @@
+{
+	"Conditionals": "Condicionales",
+	"Agents": "Agentes",
+	"{{name}} is {{age}} years old": "{{name}} tiene {{age}} años",
+	"Pluralization example": "Pluralization example",
+	"Mouse": {
+		"one": "Ratón",
+		"other": "Ratones"
+	}
+}
