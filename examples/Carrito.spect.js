@@ -136,16 +136,12 @@ describe("Testing de la clase Carrito", () => {
       expect(carrito.items).toHaveLength(1);
     });
 
-    /*     it.todo(
-      "Carrito.items debe ser un array con DOS elementos si añadimos dos sushiItem y un waterItem y eliminamos un sushiItem"
-    );
-
-    it("", () => {
+    it("Carrito.items debe ser un array con DOS elementos si añadimos dos sushiItem y un waterItem y eliminamos un sushiItem", () => {
       carrito.addItem(sushiItem);
       carrito.addItem(sushiItem);
       carrito.addItem(waterItem);
       carrito.removeItem(sushiItem);
       expect(carrito.items).toHaveLength(2);
-    }); */
+    });
   });
 });

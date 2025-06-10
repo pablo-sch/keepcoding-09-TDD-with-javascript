@@ -1,3 +1,5 @@
+import crypto from "crypto";
+
 export class Carrito {
   // items = 0;
 
@@ -26,7 +28,23 @@ export class Carrito {
     //     throw new Error('Item must have price and name');
     // }
     this.checkItem(item);
-    this.items.push(item);
+
+    // Aproximación con cantidad
+    // if (this.items.some(i => i.name === item.name)) {
+    //     const findItem = this.items.find(i => i.name === item.name);
+    //     findItem.qt += 1;
+    // } else {
+    //     this.items.push({
+    //         ...item,
+    //         qt: 1
+    //     });
+    // }
+
+    this.items.push({
+      ...item,
+      id: crypto.randomUUID(),
+    });
+    // this.items.push(item);
     this.totalCheckout += item.price;
   }
 
@@ -38,7 +56,22 @@ export class Carrito {
   }
 
   removeItem(item) {
-    this.items = this.items.filter((i) => i.name !== item.name);
+    // this.items = this.items.filter( i => i.name !== item.name );
+    // return this.items;
+
+    // Aproximación con cantidad
+    // const findItem = this.items.find(i => i.name === item.name);
+    // if (findItem.qt === 1) {
+    //     // Elimino el elemento
+    //     this.items = this.items.filter( i => i.name !== item.name );
+    // } else {
+    //     // Reducimos qt
+    //     findItem.qt -= 1;
+    // }
+
+    // Aproximación con ID
+    const findItem = this.items.find((i) => i.name === item.name);
+    this.items = this.items.filter((i) => i.id != findItem.id);
     return this.items;
   }
 }
