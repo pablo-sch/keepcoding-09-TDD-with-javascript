@@ -8,7 +8,8 @@
     "start": "cross-env NODEAPP_ENV=production node server.js",
     "initDB": "node initDB.js",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage --coverageDirectory=test-coverage"
   },
   "keywords": [],
   "author": "",
