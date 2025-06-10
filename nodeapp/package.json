@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "cross-env PORT=3000 NODEAPP_ENV=development nodemon server.js",
     "start": "cross-env NODEAPP_ENV=production node server.js",
-    "initDB": "node initDB.js"
+    "initDB": "node initDB.js",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +27,12 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.27.4",
+    "@babel/preset-env": "^7.27.2",
+    "@types/jest": "^29.5.14",
+    "babel-jest": "^30.0.0",
+    "jest": "^30.0.0",
+    "jest-extended": "^6.0.0",
     "nodemon": "^3.1.9"
   },
   "jest": {
