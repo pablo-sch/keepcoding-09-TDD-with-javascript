@@ -10,14 +10,8 @@ import * as agentsController from "./controllers/agentsController.js";
 import * as sessionManager from "./lib/sessionManager.js";
 import * as ejs from "ejs";
 
-// Usar una forma compatible con entornos de test para obtener __dirname
-let dirname;
-try {
-  dirname = path.dirname(fileURLToPath(import.meta.url));
-} catch (error) {
-  // Fallback para entornos de test
-  dirname = ".";
-}
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -29,7 +23,7 @@ app.locals.appName = "NodeApp";
 
 app.use(logger("dev"));
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(dirname, "public")));
+app.use(express.static(path.join(__dirname, "public")));
 
 /**
  * Application routes
@@ -42,23 +36,12 @@ app.post("/login", loginController.postLogin);
 app.get("/logout", loginController.logout);
 app.get("/agents/new", sessionManager.guard, agentsController.index);
 app.post("/agents/new", sessionManager.guard, agentsController.postNew);
-app.get(
-  "/agents/delete/:agentId",
-  sessionManager.guard,
-  agentsController.deleteAgent
-);
+app.get("/agents/delete/:agentId", sessionManager.guard, agentsController.deleteAgent);
 
 // Ejemplos
 app.get("/param_in_route/:num?", homeController.paranInRoute);
-app.get(
-  "/param_in_route_multiple/:product/size/:size([0-9]+)/color/:color",
-  homeController.paranInRouteMultiple
-);
-app.get(
-  "/param_in_query",
-  homeController.validateParamInQuery,
-  homeController.paramInQuery
-);
+app.get("/param_in_route_multiple/:product/size/:size([0-9]+)/color/:color", homeController.paranInRouteMultiple);
+app.get("/param_in_query", homeController.validateParamInQuery, homeController.paramInQuery);
 app.post("/post_with_body", homeController.postWithBody);
 
 // catch 404 and send error

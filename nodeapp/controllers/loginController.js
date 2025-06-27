@@ -12,24 +12,22 @@ export async function postLogin(req, res, next) {
     const redir = req.query.redir;
     // buscar el usuario en la base de datos
     const user = await User.findOne({ email: email });
-    console.log(user);
+    //console.log(user);
 
     // si no lo encuentro, o la contraseña no coincide --> error
     if (!user || !(await user.comparePassword(password))) {
-      console.log(
-        `Login failed for user ${email}: user not found or password mismatch`
-      );
+      console.log(`Login failed for user ${email}: user not found or password mismatch`);
       res.locals.error = "Invalid credentials";
       res.locals.email = email;
       res.render("login");
-      console.log(`Login failed for user ${email}`);
+      //console.log(`Login failed for user ${email}`);
       return;
     }
 
     // Registrar el inicio de sesión
     const ip = req.ip || req.connection.remoteAddress;
     user.addLoginRecord(ip);
-    console.log(`Login record added for user ${user.email} from IP ${ip}`);
+    //console.log(`Login record added for user ${user.email} from IP ${ip}`);
     await user.save();
 
     // si el usuario existe y la contraseña es buena --> redirect a la home

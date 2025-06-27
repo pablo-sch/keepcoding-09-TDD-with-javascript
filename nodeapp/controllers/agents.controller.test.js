@@ -1,5 +1,5 @@
 import request from "supertest";
-import app from "../app";
+import app from "../app.js";
 import { guard, middleware } from "../lib/sessionManager";
 
 // Podemos mockear funciones internas
