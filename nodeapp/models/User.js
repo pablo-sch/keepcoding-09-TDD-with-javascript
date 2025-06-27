@@ -12,8 +12,18 @@ const loginRecordSchema = new Schema(
 const userSchema = new Schema({
   email: { type: String, unique: true },
   password: String,
-  loginRecords: [loginRecordSchema],
+  loginRecords: [
+    {
+      timestamp: { type: Date, required: true, default: Date.now },
+      ip: { type: String, required: true },
+    },
+  ],
 });
+
+userSchema.methods.addLoginRecord = function (ip) {
+  this.loginRecords.push({ timestamp: new Date(), ip });
+  this.loginRecords.sort((a, b) => a.timestamp - b.timestamp);
+};
 
 // método del modelo
 userSchema.statics.hashPassword = (clearPassword) => {

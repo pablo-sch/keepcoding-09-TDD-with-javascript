@@ -2,37 +2,40 @@ import request from "supertest";
 import app from "../app.js";
 import { guard, middleware } from "../lib/sessionManager";
 
-// Podemos mockear funciones internas
+//We can mock internal functions+++++++++++++++++++++++++++++++
 jest.mock("../lib/sessionManager", () => ({
   guard: jest.fn((req, res, next) => {
-    // Simular que el usuario no esta autenticado
+    // Simulate that the user is not authenticated
     res.redirect(`/login?redir=${req.url}`);
 
-    // Todos los middlewares llaman a next();
+    // All middlewares call next();
     next();
   }),
   middleware: jest.fn((req, res, next) => next()),
   useSessionInViews: jest.fn((req, res, next) => next()),
 }));
 
+//#######################################################################################################
 describe("AgentsController", () => {
-  it("Debería redirigir a la vista de login si no existe una sesión", async () => {
+  //=========================================================================
+  it("should redirect to the login view if no session exists", async () => {
     expect.assertions(2);
-    // Hacer una request a nuestra app
+    // Make a request to our app
     const response = await request(app)
-      // en la ruta /agents/new
+      // on the /agents/new route
       .get("/agents/new");
 
-    // Esperamos una redirección a login
+    // We expect a redirection to login
     expect(response.status).toBe(302);
     expect(response.headers.location).toBe("/login?redir=/agents/new");
   });
 
-  it("debería llamar al guard antes de permitir el acceso a la ruta", async () => {
+  //=========================================================================
+  it("should call guard before allowing access to the route", async () => {
     expect.assertions(1);
     const response = await request(app).get("/agents/new");
 
-    // El middleware de guard se debe llamar
+    // The guard middleware should be called
     expect(guard).toHaveBeenCalled();
   });
 });

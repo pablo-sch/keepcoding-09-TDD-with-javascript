@@ -1,10 +1,11 @@
 import request from "supertest";
-import app from "../app";
+import app from "../app.js";
 import User from "../models/User";
 
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 jest.mock("../models/User.js");
 
-// Mockeamos connectMongoose para evitar conexiones reales
+//We mock connectMongoose to avoid real connections++++++++++++
 jest.mock("../lib/connectMongoose.js", () => {
   return jest.fn().mockResolvedValue({
     name: "mockConnection",
@@ -12,7 +13,7 @@ jest.mock("../lib/connectMongoose.js", () => {
   });
 });
 
-// Mockeamos session para evitar problemas de sesión
+//We mock session to avoid session issues++++++++++++++++++++++
 jest.mock("express-session", () => {
   return () => (req, res, next) => {
     req.session = {
@@ -23,7 +24,7 @@ jest.mock("express-session", () => {
   };
 });
 
-// Mockeamos sessionManager para simplificar los tests
+//We mock sessionManager to simplify the tests+++++++++++++++++
 jest.mock("../lib/sessionManager", () => ({
   middleware: (req, res, next) => {
     req.session = {
@@ -39,27 +40,31 @@ jest.mock("../lib/sessionManager", () => ({
   guard: (req, res, next) => next(),
 }));
 
+//#######################################################################################################
 describe("loginController", () => {
-  // Limpiamos mocks antes de cada test
+  // Clear mocks before each test
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it("debe devolver un 200 al visitar la página de login", async () => {
+  //=========================================================================
+  it("should return 200 when visiting the login page", async () => {
     const response = await request(app).get("/login");
 
     expect(response.status).toBe(200);
   });
 
-  it("debe mostrar formulario de login sin errores inicialmente", async () => {
+  //=========================================================================
+  it("should show login form without errors initially", async () => {
     const response = await request(app).get("/login");
 
     expect(response.text).toContain("form");
     expect(response.text).not.toContain("Invalid credentials");
   });
 
-  it("debe redirigir a home tras login exitoso", async () => {
-    // Mock de usuario existente con contraseña correcta
+  //=========================================================================
+  it("should redirect to home after successful login", async () => {
+    // Mock an existing user with correct password
     const mockUser = {
       id: "user123",
       email: "test@example.com",
@@ -81,8 +86,9 @@ describe("loginController", () => {
     expect(mockUser.comparePassword).toHaveBeenCalledWith("password123");
   });
 
-  it("debe mostrar error con credenciales inválidas", async () => {
-    // Mock de usuario existente con contraseña incorrecta
+  //=========================================================================
+  it("should show error with invalid credentials", async () => {
+    // Mock an existing user with incorrect password
     const mockUser = {
       email: "test@example.com",
       comparePassword: jest.fn().mockResolvedValue(false),
@@ -99,8 +105,9 @@ describe("loginController", () => {
     expect(response.text).toContain("Invalid credentials");
   });
 
-  it("debe mostrar error cuando el usuario no existe", async () => {
-    // Mock de usuario no existente
+  //=========================================================================
+  it("should show error when user does not exist", async () => {
+    // Mock non-existent user
     User.findOne = jest.fn().mockResolvedValue(null);
 
     const response = await request(app).post("/login").type("form").send({
@@ -112,8 +119,9 @@ describe("loginController", () => {
     expect(response.text).toContain("Invalid credentials");
   });
 
-  it("debe redirigir a la URL especificada después del login exitoso", async () => {
-    // Mock de usuario existente con contraseña correcta
+  //=========================================================================
+  it("should redirect to specified URL after successful login", async () => {
+    // Mock an existing user with correct password
     const mockUser = {
       id: "user123",
       email: "test@example.com",
@@ -132,10 +140,35 @@ describe("loginController", () => {
     expect(response.status).toBe(302);
     expect(response.headers.location).toBe("/agents/new");
   });
-  it("debe cerrar sesión y redirigir a home al hacer logout", async () => {
+
+  //=========================================================================
+  it("should logout and redirect to home", async () => {
     const response = await request(app).get("/logout");
 
     expect(response.status).toBe(302);
     expect(response.headers.location).toBe("/");
+  });
+});
+
+//#######################################################################################################
+describe.only("TDD Exercise", () => {
+  //=========================================================================
+  it("should record a new login upon successful login", async () => {
+    const mockUser = {
+      id: "user123",
+      email: "test@example.com",
+      comparePassword: jest.fn().mockResolvedValue(true),
+      addLoginRecord: jest.fn(),
+      save: jest.fn().mockResolvedValue(true),
+    };
+    User.findOne = jest.fn().mockResolvedValue(mockUser);
+
+    await request(app).post("/login").type("form").send({
+      email: "test@example.com",
+      password: "password123",
+    });
+
+    expect(mockUser.addLoginRecord).toHaveBeenCalled();
+    expect(mockUser.save).toHaveBeenCalled();
   });
 });

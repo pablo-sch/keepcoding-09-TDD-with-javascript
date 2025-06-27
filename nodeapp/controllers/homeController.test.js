@@ -1,3 +1,5 @@
+//#######################################################################################################
 describe("homeController", () => {
-  it.todo("debe devolver un 200 al visitar la home");
+  //=========================================================================
+  it.todo("should return a 200 when visiting the home page");
 });
