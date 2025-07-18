@@ -1,12 +1,8 @@
 # Test-Driven Development Exercise with JavaScript
 
-**KeepCoding Projects - Web 18**  
-Check the full list of repositories and descriptions in 📁 [repos-kc-web-18.md](https://github.com/pablo-sch/pablo-sch/blob/main/docs/repos-kc-web-18.md)
+`>` **KeepCoding Projects - Web 18:** 📁 [repos-kc-web-18.md](https://github.com/pablo-sch/pablo-sch/blob/main/docs/repos-kc-web-18.md)
 
-## Select your language
-
-- 🇪🇸 [Spanish](README.es.md)
-- 🇩🇪 [German](README.de.md)
+`>` **Select your Language:** [Spanish](README.es.md) 🔄 [German](README.de.md)
 
 <!-- ------------------------------------------------------------------------------------------- -->
 
@@ -25,15 +21,18 @@ Testing is essential to detect bugs before deployment, increase confidence in th
 ### Types of Tests
 
 #### 1. External Tests (End-to-End)
+
 - Manual: A tester visually verifies the application's behavior following predefined steps.
 - Automated: Simulate user interactions to validate behavior after code changes.
 
 #### 2. Functional Tests
+
 - Unit: Evaluate individual functions or modules in isolation.
 - Integration: Check that multiple components work correctly together.
 - End-to-End: Simulate complete user flows to ensure the application functions as expected.
 
 #### 3. Non-Functional Tests
+
 - Security: Detect vulnerabilities and validate the protection of sensitive data.
 - Performance: Evaluate response times and behavior under load.
 - Usability: Analyze real user experience within the interface.
@@ -63,45 +62,49 @@ TODO
 
 ## Technologies Used
 
-### Languages
-
-- **JavaScript**: To add interactivity and dynamic features to the website, improving the user experience with functionalities such as form validation, animations, and event handling.
-
-### Dependencies
-
-- babel
-- jest
-- axios
+- **Languages:** JavaScript.
+- **Notable Dependencies (Node.js):** Babel, Jest, and Axios.
 
 <!-- ------------------------------------------------------------------------------------------- -->
 
 ## Installation and Usage Instructions
 
-### Software Requirements
+### 1. Software Requirements
 
+- **[Node.js](https://nodejs.org/en/download/)** (tested on version **v22.15.1**)
 - **[Git](https://git-scm.com/downloads)** (tested on version **2.47.1.windows.1**)
 - **[Visual Studio Code](https://code.visualstudio.com/)** (tested on version **1.99.0**)
 
-### Cloning the Repository
-
-Proyect
+### 2. Repository Cloning
 
 ```bash
-`git clone https://github.com/pablo-sch/keepcoding-09-TDD-with-javascript.git`
+git clone https://github.com/pablo-sch/keepcoding-09-TDD-with-javascript.git
 ```
 
-Demo
+`>` **View Cloning Demo in VSCode:** 🎥 [Gif Demo](https://github.com/pablo-sch/pablo-sch/blob/main/etc/clone-tutorial.gif)
 
-![Demo](https://github.com/pablo-sch/pablo-sch/blob/main/etc/clone-tutorial.gif)
+### 3. Commands
 
-<!-- ------------------------------------------------------------------------------------------- -->
+```sh
+# Install project dependencies.
+npm install
 
-## Project Preview
+# Run tests once with Jest.
+npm test
 
-None
+# Run tests in watch mode, only affected tests.
+npm test:watch
 
-<!-- ------------------------------------------------------------------------------------------- -->
+# Run all tests in watch mode.
+npm test:watchAll
+
+# Show the list of test files.
+npm test:list
+
+# Run tests and output results in JSON format.
+npm test:json
+```
 
 ## Contributions and Licensing
 
-This project does not include external contributions or licenses.
+Project licensed under the MIT License. Free to use and distribute with attribution. External contributions are not accepted, but suggestions are welcome.

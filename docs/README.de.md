@@ -1,12 +1,8 @@
 # Test-Driven-Development-Übung mit JavaScript
 
-**KeepCoding Projects - Web 18**  
-Detaillierte Liste der Repositories und Beschreibungen in 📁 [repos-kc-web-18.md](https://github.com/pablo-sch/pablo-sch/blob/main/docs/repos-kc-web-18.md)
+`>` **KeepCoding Projekte - Web 18:** 📁 [repos-kc-web-18.md](https://github.com/pablo-sch/pablo-sch/blob/main/docs/repos-kc-web-18.md)
 
-## Wähle deine Sprache
-
-- 🇺🇸 [Englisch](README.md)
-- 🇪🇸 [Spanisch](README.es.md)
+`>` **Wähle deine Sprache:** [Englisch](README.md) 🔄 [Spanish](README.es.md)
 
 <!-- ------------------------------------------------------------------------------------------- -->
 
@@ -25,15 +21,18 @@ Tests sind unerlässlich, um Fehler vor dem Deployment zu erkennen, Vertrauen in
 ### Testarten
 
 #### 1. Externe Tests (End-to-End)
+
 - Manuell: Ein Tester überprüft das Verhalten der Anwendung visuell anhand vordefinierter Schritte.
 - Automatisiert: Simulieren Benutzerinteraktionen, um das Verhalten nach Codeänderungen zu validieren.
 
 #### 2. Funktionale Tests
+
 - Unit-Tests: Testen einzelne Funktionen oder Module isoliert.
 - Integrationstests: Prüfen das Zusammenspiel mehrerer Komponenten.
 - End-to-End: Simulieren vollständige Nutzerabläufe, um die Gesamtfunktionalität der Anwendung sicherzustellen.
 
 #### 3. Nicht-funktionale Tests
+
 - Sicherheit: Erkennen Schwachstellen und prüfen den Schutz sensibler Daten.
 - Leistung: Messen Antwortzeiten und Verhalten unter Last.
 - Benutzerfreundlichkeit: Analysieren die reale Nutzererfahrung in der Oberfläche.
@@ -63,45 +62,49 @@ TODO
 
 ## Verwendete Technologien
 
-### Sprachen
-
-- **JavaScript**: Um der Website Interaktivität und dynamische Funktionen hinzuzufügen, wodurch die Benutzererfahrung durch Funktionen wie Formularvalidierung, Animationen und Event-Handling verbessert wird.
-
-### Abhängigkeiten
-
-- babel
-- jest
-- axios
+- **Sprachen:** JavaScript.
+- **Bemerkenswerte Abhängigkeiten (Node.js):** Babel, Jest und Axios.
 
 <!-- ------------------------------------------------------------------------------------------- -->
 
-## Installations- und Gebrauchsanweisungen
+## Installations- und Nutzungshinweise
 
-### Softwareanforderungen
+### 1. Softwareanforderungen
 
+- **[Node.js](https://nodejs.org/en/download/)** (getestet mit Version **v22.15.1**)
 - **[Git](https://git-scm.com/downloads)** (getestet mit Version **2.47.1.windows.1**)
 - **[Visual Studio Code](https://code.visualstudio.com/)** (getestet mit Version **1.99.0**)
 
-### Klonen des Repositories
-
-Projekt
+### 2. Repository-Klonen
 
 ```bash
-`git clone https://github.com/pablo-sch/keepcoding-09-TDD-with-javascript.git`
+git clone https://github.com/pablo-sch/keepcoding-09-TDD-with-javascript.git
 ```
 
-Demo
+`>` **Klon-Demo in VSCode ansehen:** 🎥 [Gif Demo](https://github.com/pablo-sch/pablo-sch/blob/main/etc/clone-tutorial.gif)
 
-![Demo](https://github.com/pablo-sch/pablo-sch/blob/main/etc/clone-tutorial.gif)
+### 3. Befehle
 
-<!-- ------------------------------------------------------------------------------------------- -->
+```sh
+# Installiere die Projektabhängigkeiten.
+npm install
 
-## Projektvorschau
+# Führe Tests einmalig mit Jest aus.
+npm test
 
-Keine
+# Führe Tests im Beobachtungsmodus aus, nur betroffene Tests.
+npm test:watch
 
-<!-- ------------------------------------------------------------------------------------------- -->
+# Führe alle Tests im Beobachtungsmodus aus.
+npm test:watchAll
 
-## Beiträge und Lizenzen
+# Zeige die Liste der Testdateien an.
+npm test:list
 
-Dieses Projekt enthält keine externen Beiträge oder Lizenzen.
+# Führe Tests aus und zeige Ergebnisse im JSON-Format.
+npm test:json
+```
+
+## Beiträge und Lizenzierung
+
+Projekt unter MIT-Lizenz. Frei zur Nutzung und Verbreitung mit Namensnennung. Externe Beiträge werden nicht akzeptiert, aber Vorschläge sind willkommen.
